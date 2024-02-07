@@ -21,6 +21,7 @@ public class Day25 {
 
             for(int i = 1; i < nodes.length; i++){
                 add(nodes[0], nodes[i]);
+                //System.out.println(nodes[0] + " " + nodes[i]);
                 add(nodes[i], nodes[0]);
             }
         }
@@ -44,29 +45,24 @@ public class Day25 {
         }
 
         List<String> topConnections = printTop(3);
-
+        //System.out.println(graph);
         String[] startingPoints = null;
         for(var c : topConnections){
             startingPoints = c.split(":");
             cut(startingPoints[0], startingPoints[1]);
         }
 
+        //System.out.println(graph);
+
         HashSet<String> visited1 = new HashSet<>();
-        visited1.add(startingPoints[0]);
         countVertices(startingPoints[0], visited1);
 
         HashSet<String> visited2 = new HashSet<>();
-        visited1.add(startingPoints[1]);
         countVertices(startingPoints[1], visited2);
 
         System.out.println(visited1.size() + " * " + visited2.size());
 
-        System.out.println("Size multiplied: " + ((visited1.size() - 1) * visited2.size())); // why do I need to substract 1 ?! ? in the test input JQT seems to remain in both graphs after the cuts..
-
-        System.out.println(visited1);
-        System.out.println();
-
-        System.out.println(visited2);
+        System.out.println("Size multiplied: " + ((visited1.size()) * visited2.size()));
     }
 
     private static void countVertices(String startingPoint, HashSet<String> visited) {
