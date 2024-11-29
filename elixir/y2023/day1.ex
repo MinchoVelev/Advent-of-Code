@@ -1,15 +1,14 @@
 defmodule Day1 do
-  def extract_number1(s) do
-    nums =
-      s
-      |> String.to_charlist()
-      |> Enum.map(fn c -> c - ?0 end)
-      |> Enum.filter(fn i -> i >= 0 && i <= 9 end)
-      |> Enum.join("")
+  def extract_numbers(s) do
+    s
+    |> String.to_charlist()
+    |> Enum.map(fn c -> c - ?0 end)
+    |> Enum.filter(fn i -> i >= 0 && i <= 9 end)
+    |> Enum.join("")
+  end
 
-    first = String.at(nums, 0)
-    second = String.at(nums, String.length(nums) - 1)
-    first <> second
+  def extract_first_and_last(s) do
+    String.first(s) <> String.last(s)
   end
 
   def words_to_int(s) do
@@ -63,7 +62,8 @@ defmodule Day1 do
       File.read!(f)
       |> String.split("\n", trim: true)
       |> Enum.map(&words_to_int/1)
-      |> Enum.map(&extract_number1/1)
+      |> Enum.map(&extract_numbers/1)
+      |> Enum.map(&extract_first_and_last/1)
       |> Enum.map(&String.to_integer/1)
       |> Enum.sum()
 
@@ -76,7 +76,8 @@ defmodule Day1 do
     result =
       File.read!(f)
       |> String.split("\n", trim: true)
-      |> Enum.map(&extract_number1/1)
+      |> Enum.map(&extract_numbers/1)
+      |> Enum.map(&extract_first_and_last/1)
       |> Enum.map(&String.to_integer/1)
       |> Enum.sum()
 
