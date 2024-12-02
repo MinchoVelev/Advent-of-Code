@@ -10,7 +10,6 @@ defmodule Day2 do
 
   def day2_1() do
     read()
-    |> IO.inspect()
     |> Enum.filter(&is_safe/1)
     |> Enum.count()
     |> IO.puts()
@@ -32,7 +31,6 @@ defmodule Day2 do
 
   def day2_2() do
     read()
-    |> IO.inspect()
     |> Enum.filter(&has_any_safe/1)
     |> Enum.count()
     |> IO.puts()
@@ -55,7 +53,13 @@ defmodule Day2 do
 end
 
 IO.puts(:part1)
+start = NaiveDateTime.utc_now()
 Day2.day2_1()
+runtime = NaiveDateTime.diff(NaiveDateTime.utc_now(), start, :microsecond)
+IO.puts("\nTook [#{runtime}] microseconds\n")
 
 IO.puts("\npart2")
+start = NaiveDateTime.utc_now()
 Day2.day2_2()
+runtime = NaiveDateTime.diff(NaiveDateTime.utc_now(), start, :microsecond)
+IO.puts("\nTook [#{runtime}] microseconds\n")
