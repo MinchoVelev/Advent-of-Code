@@ -16,15 +16,13 @@ defmodule Day2 do
   end
 
   def is_safe(list) do
-    first = Enum.at(list, 0)
-    second = Enum.at(list, 1)
-
+    [first, second | _] = list
     order = first > second
 
     has_unsafe =
       Enum.chunk_every(list, 2, 1, :discard)
       |> Enum.map(fn [left, right | _] -> {abs(left - right), order == left > right} end)
-      |> Enum.any?(fn {n, o} -> n > 3 or n < 1 or !o end)
+      |> Enum.any?(fn {n, o} -> n not in 1..3 or !o end)
 
     !has_unsafe
   end
@@ -37,18 +35,17 @@ defmodule Day2 do
   end
 
   def has_any_safe(list) do
-    lastIndex = length(list) - 1
+    last_index = length(list) - 1
 
-    Enum.map(-1..lastIndex, fn index -> sublist(list, index) end)
+    Enum.map(-1..last_index, fn index -> sublist(list, index) end)
     |> Enum.any?(&is_safe/1)
   end
 
-  def sublist(list, index) when index >= 0 do
-    List.delete_at(list, index)
-  end
-
-  def sublist(list, index) when index < 0 do
-    list
+  def sublist(list, index) do
+    cond do
+      index < 0 -> list
+      true -> List.delete_at(list, index)
+    end
   end
 end
 
