@@ -37,7 +37,7 @@ defmodule Day2 do
   end
 
   def has_any_safe(list) do
-    lastIndex = Enum.count(list) - 1
+    lastIndex = length(list) - 1
 
     Enum.map(-1..lastIndex, fn index -> sublist(list, index) end)
     |> Enum.any?(&is_safe/1)
