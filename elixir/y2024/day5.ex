@@ -32,12 +32,10 @@ sorted =
     Enum.sort(u, fn left, right ->
       pair = pairs[left]
 
-      cond do
-        not is_nil(pair) and right in pair ->
-          true
-
-        true ->
-          false
+      if not is_nil(pair) and right in pair do
+        true
+      else
+        false
       end
     end)
   end)
