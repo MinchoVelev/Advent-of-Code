@@ -2,8 +2,8 @@
 .idea
 build/
 elixir/stats
-#elixir/y2024/inputs
-#elixir/y2023/inputs
+elixir/y2024/inputs
+elixir/y2023/inputs
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
