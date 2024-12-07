@@ -14,7 +14,7 @@ defmodule Day7 do
             []
           end
 
-        mul ++ sum ++ concat
+        Enum.filter(mul ++ sum ++ concat, fn n -> n <= test end)
       end)
       |> Enum.any?(fn n -> n == test end)
 
